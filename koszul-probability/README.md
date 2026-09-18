@@ -36,6 +36,12 @@ The reason for the limit is concentration on the largest stratum `(n,e,m)=(B,B,B
 From this directory:
 
 ```sh
+./verify.sh
+```
+
+`verify.sh` fetches the pinned dependencies, downloads mathlib's compiled cache, builds every proof file, runs `Audit.lean`, and fails unless every audited theorem depends only on `propext`, `Classical.choice`, `Quot.sound` and no source contains `sorry` or `admit`. Pass `--no-cache` to skip the cache download. The individual steps are:
+
+```sh
 lake build
 lake env lean Audit.lean
 ```
